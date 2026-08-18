@@ -37,11 +37,12 @@ function App() {
   // 2. IR BUSCAR APENAS 1 PESSOA PARA EDITAR (GET por ID)
   const selecionarPessoa = (id) => {
     fetch(`${url}/api/person/v1/${id}`, {
-      headers: { Accept: "application/json" },
+      headers: {
+        Accept: "application/json", // Avisa a API que o React quer receber JSON
+      },
     })
       .then((response) => response.json())
       .then((data) => {
-        // Preenche o formulário com os dados da pessoa encontrada
         setForm({
           id: data.id,
           firstName: data.firstName,
@@ -59,22 +60,21 @@ function App() {
   const salvarPessoa = (e) => {
     e.preventDefault();
 
-    // Se tiver ID faz PUT (Editar), se não tiver faz POST (Adicionar)
     const ehEditar = form.id !== null;
     const metodo = ehEditar ? "PUT" : "POST";
 
     fetch(`${url}/api/person/v1`, {
       method: metodo,
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        "Content-Type": "application/json", // Avisa que o React está a ENVIAR JSON
+        Accept: "application/json", // Avisa que o React quer RECEBER JSON
       },
       body: JSON.stringify(form),
     })
       .then((response) => {
         if (response.ok) {
-          carregarPessoas(); // Recarrega a tabela
-          limparFormulario(); // Limpa os campos
+          carregarPessoas();
+          limparFormulario();
         }
       })
       .catch((error) =>
