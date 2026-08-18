@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next"; // FIXED: Added missing import
 import { personService } from "./services/api";
 import PersonForm from "./components/PersonForm";
 import PersonTable from "./components/PersonTable";
@@ -14,8 +15,16 @@ const initialFormState = {
 };
 
 function App() {
+  const { t, i18n } = useTranslation(); // Destructuring translation function and instance
   const [persons, setPersons] = useState([]);
   const [form, setForm] = useState(initialFormState);
+
+  // FIXED: Added missing language changer function to prevent loop/crash
+  const changeLanguage = (lng) => {
+    if (i18n.language !== lng) {
+      i18n.changeLanguage(lng);
+    }
+  };
 
   // Load the full list of persons when the application boots up
   const carregarPessoas = async () => {
@@ -87,7 +96,39 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Livro de Pessoas</h1>
+      {/* Language Selector Controls */}
+      <div className="lang-selector">
+        <button
+          type="button"
+          onClick={() => changeLanguage("pt")}
+          className={
+            i18n.resolvedLanguage === "pt" ? "active" : ""
+          }
+        >
+          PT
+        </button>
+        <button
+          type="button"
+          onClick={() => changeLanguage("en")}
+          className={
+            i18n.resolvedLanguage === "en" ? "active" : ""
+          }
+        >
+          EN
+        </button>
+        <button
+          type="button"
+          onClick={() => changeLanguage("de")}
+          className={
+            i18n.resolvedLanguage === "de" ? "active" : ""
+          }
+        >
+          DE
+        </button>
+      </div>
+
+      {/* Dynamic Title */}
+      <h1>{t("title")}</h1>
 
       <PersonForm
         form={form}

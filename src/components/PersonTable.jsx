@@ -1,19 +1,24 @@
+import { useTranslation } from "react-i18next";
+
 // Component responsible for rendering the grid and action buttons
 export default function PersonTable({
   persons,
   onEditar,
   onEliminar,
 }) {
+  // FIXED: Destructured the translation function inside the component
+  const { t } = useTranslation();
+
   return (
     <div className="table-container">
       <table className="person-table">
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Apelido</th>
-            <th>Morada</th>
-            <th>Género</th>
-            <th>Ações</th>
+            <th>{t("name")}</th>
+            <th>{t("lastName")}</th>
+            <th>{t("address")}</th>
+            <th>{t("gender")}</th>
+            <th>{t("actions")}</th>
           </tr>
         </thead>
         <tbody>
@@ -28,13 +33,13 @@ export default function PersonTable({
                   onClick={() => onEditar(person.id)}
                   className="btn-edit"
                 >
-                  Editar
+                  {t('edit')}
                 </button>
                 <button
                   onClick={() => onEliminar(person.id)}
                   className="btn-delete"
                 >
-                  Eliminar
+                  {t('delete')}
                 </button>
               </td>
             </tr>

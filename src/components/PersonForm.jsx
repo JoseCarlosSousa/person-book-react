@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 // Component responsible for rendering the add/edit form
 export default function PersonForm({
   form,
@@ -5,17 +7,15 @@ export default function PersonForm({
   onSalvar,
   onCancelar,
 }) {
+  const { t } = useTranslation();
+
   return (
     <form onSubmit={onSalvar} className="person-form">
-      <h3>
-        {form.id
-          ? "Editar Pessoa"
-          : "Adicionar Nova Pessoa"}
-      </h3>
+      <h3>{form.id ? t("editPerson") : t("addPerson")}</h3>
       <div className="form-grid">
         <input
           type="text"
-          placeholder="Nome"
+          placeholder={t("name")}
           value={form.firstName}
           onChange={(e) =>
             setForm({ ...form, firstName: e.target.value })
@@ -24,7 +24,7 @@ export default function PersonForm({
         />
         <input
           type="text"
-          placeholder="Apelido"
+          placeholder={t("lastName")}
           value={form.lastName}
           onChange={(e) =>
             setForm({ ...form, lastName: e.target.value })
@@ -33,7 +33,7 @@ export default function PersonForm({
         />
         <input
           type="text"
-          placeholder="Morada"
+          placeholder={t("address")}
           value={form.address}
           onChange={(e) =>
             setForm({ ...form, address: e.target.value })
@@ -46,13 +46,14 @@ export default function PersonForm({
             setForm({ ...form, gender: e.target.value })
           }
         >
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+          {/* FIXED: Dynamic translation for gender options */}
+          <option value="Male">{t("male")}</option>
+          <option value="Female">{t("female")}</option>
         </select>
       </div>
       <div className="form-buttons">
         <button type="submit" className="btn-save">
-          {form.id ? "Atualizar" : "Guardar"}
+          {form.id ? t("update") : t("save")}
         </button>
         {form.id && (
           <button
@@ -60,7 +61,7 @@ export default function PersonForm({
             onClick={onCancelar}
             className="btn-cancel"
           >
-            Cancelar
+            {t("cancel")}
           </button>
         )}
       </div>
