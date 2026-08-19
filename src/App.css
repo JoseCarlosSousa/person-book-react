@@ -282,3 +282,39 @@ h1 {
   color: white;
   border-color: #2a9d8f;
 }
+/* Header Layout Structure */
+.header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+/* Navbar Link Elements */
+.navbar {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #495057;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f1f3f5;
+  color: #2a9d8f;
+}
+
+/* Language selector correction to prevent spacing issues */
+.lang-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0;
+}
