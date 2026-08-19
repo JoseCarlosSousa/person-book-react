@@ -18,8 +18,8 @@ const resources = {
       address: "Morada",
       gender: "Género",
       actions: "Ações",
-      male: "Male",
-      female: "Female",
+      male: "Masculino",
+      female: "Feminino",
       save: "Guardar",
       update: "Atualizar",
       cancel: "Cancelar",
@@ -29,8 +29,8 @@ const resources = {
       bookTitle: "Título",
       author: "Autor",
       launchDate: "Data de Lançamento",
-      price: "Preço"
-    }
+      price: "Preço",
+    },
   },
   en: {
     translation: {
@@ -58,8 +58,8 @@ const resources = {
       bookTitle: "Title",
       author: "Author",
       launchDate: "Launch Date",
-      price: "Price"
-    }
+      price: "Price",
+    },
   },
   de: {
     translation: {
@@ -87,9 +87,9 @@ const resources = {
       bookTitle: "Titel",
       author: "Autor",
       launchDate: "Erscheinungsdatum",
-      price: "Preis"
-    }
-  }
+      price: "Preis",
+    },
+  },
 };
 
 i18n.use(initReactI18next).init({
