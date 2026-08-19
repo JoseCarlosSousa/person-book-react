@@ -27,19 +27,23 @@ export default function PersonTable({
               <td>{person.firstName}</td>
               <td>{person.lastName}</td>
               <td>{person.address}</td>
-              <td>{person.gender}</td>
+              <td>
+                {person.gender
+                  ? t(person.gender.toLowerCase())
+                  : ""}
+              </td>
               <td className="actions-cell">
                 <button
                   onClick={() => onEditar(person.id)}
                   className="btn-edit"
                 >
-                  {t('edit')}
+                  {t("edit")}
                 </button>
                 <button
                   onClick={() => onEliminar(person.id)}
                   className="btn-delete"
                 >
-                  {t('delete')}
+                  {t("delete")}
                 </button>
               </td>
             </tr>
